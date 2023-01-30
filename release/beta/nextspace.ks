@@ -1,7 +1,7 @@
 # 2020 nicktelindert
 # 2022 The NextSpaceOS Project (WindowsXP95)
 # NextSpaceOS kickstart file
-# version=1.2.0a_r16
+# version=1.2.0a_r19
 
 lang en_US.UTF-8
 firewall --disabled
@@ -142,25 +142,20 @@ yum -y install https://github.com/WindowsXP95/NeXTSPACE-OS/raw/master/NS/pkgs/0.
 
 
 # NextSpace OS Plymouth theme
-wget https://github.com/WindowsXP95/NeXTSPACE-OS/raw/master/NS/resources/bootsplash.tar
-tar xvf bootsplash.tar -C /usr/share/plymouth
+tar xvf ~/NS/pkg/bootsplash.tar -C /usr/share/plymouth
 
 # App Wrappers
-wget https://github.com/WindowsXP95/NeXTSPACE-OS/raw/master/NS/resources/appwrappers.tar
-tar xvf appwrappers.tar -C /
+tar xvf ~/NS/pkg/appwrappers.tar -C /
 
 #Custom Branding and dock apps (Experimental)
-wget https://github.com/WindowsXP95/NeXTSPACE-OS/raw/master/NS/testing/NSBranding.tar
-tar xvf NSBranding.tar -C /
 
-wget https://github.com/WindowsXP95/NeXTSPACE-OS/raw/master/NS/testing/os-release.tar
-tar xvf os-release.tar -C /
+tar xvf ~/NS/pkg/NSBranding.tar -C /
 
-wget https://github.com/WindowsXP95/NeXTSPACE-OS/raw/master/NS/resources/nsdockapps.tar
-tar xvf nsdockapps.tar -C /
+tar xvf ~/NS/pkg/os-release.tar -C /
 
-wget https://github.com/WindowsXP95/NeXTSPACE-OS/raw/master/NS/resources/Documentation.tar
-tar xvf Documentation.tar -C /
+tar xvf ~/NS/pkg/NSDockApps.tar -C /
+
+tar xvf ~/NS/pkg/Documentation.tar -C /
 
 
 chmod +x /usr/bin/pclock
@@ -175,13 +170,6 @@ yum -y install http://repo.openfusion.net/centos7-x86_64/wm-dockapps-1.4-1.of.el
 
 /usr/sbin/plymouth-set-default-theme nextspace -R
 ln -s /usr/NextSpace/Apps/Login.app/Resources/loginwindow.service /etc/systemd/system/multi-user.target.wants/display-manager.service
-
-rm /NSBranding.tar
-rm /os-release.tar
-rm /appwrappers.tar
-rm /bootsplash.tar
-rm /nsdockapps.tar
-rm /Documentation.tar
 #rm -rf /Applications/TimeMon.app 
 rm -rf /Library/Sounds
 
@@ -202,6 +190,10 @@ echo 'Completed Building, preparing to make ISO...'
 /sbin/useradd -b /Users -s /bin/zsh -G audio,wheel NSUser
 /sbin/useradd -b /Users -s /bin/zsh -G audio,wheel $(whoami)
 /sbin/groupadd storage
+/usr/bin/ldconfig
+/usr/bin/rsync -a /etc/skel/ /Users/NSUser/
+/bin/chown -R NSUser:NSUser /Users/NSUser/
+/usr/sbin/restorecon -R /Users 2>&1 > /dev/null
 passwd -d NSUser > /dev/null
 /sbin/groupadd storage
 passwd -d $(whoami) > /dev/null
