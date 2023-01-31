@@ -142,20 +142,20 @@ yum -y install https://github.com/WindowsXP95/NeXTSPACE-OS/raw/master/NS/pkgs/0.
 
 
 # NextSpace OS Plymouth theme
-tar xvf ~/NS/pkg/bootsplash.tar -C /usr/share/plymouth
+tar xvf /NeXTSPACE-OS/pkg/bootsplash.tar -C /usr/share/plymouth
 
 # App Wrappers
-tar xvf ~/NS/pkg/appwrappers.tar -C /
+tar xvf /NeXTSPACE-OS/pkg/appwrappers.tar -C /
 
 #Custom Branding and dock apps (Experimental)
 
-tar xvf ~/NS/pkg/NSBranding.tar -C /
+tar xvf /NeXTSPACE-OS/pkg/NSBranding.tar -C /
 
-tar xvf ~/NS/pkg/os-release.tar -C /
+tar xvf /NeXTSPACE-OS/pkg/os-release.tar -C /
 
-tar xvf ~/NS/pkg/NSDockApps.tar -C /
+tar xvf /NeXTSPACE-OS/pkg/NSDockApps.tar -C /
 
-tar xvf ~/NS/pkg/Documentation.tar -C /
+tar xvf /NeXTSPACE-OS/pkg/Documentation.tar -C /
 
 
 chmod +x /usr/bin/pclock
