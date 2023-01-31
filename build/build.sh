@@ -2,7 +2,8 @@
 # nxtspce build script v2.1.1a
 # 2022-2023 The NextSpace OS Project
 
-/NeXTSPACE-OS/release/common/mkpackages.sh
+chmod a+x /NeXTSPACE-OS/common/mkpackages.sh
+
 buildopt='Select an option to build an image: '
 options=("Build Stable" "Build Beta" "Quit")
 select opt in "${options[@]}"
