@@ -2,6 +2,7 @@
 # nxtspce build script v2.1.1a
 # 2022-2023 The NextSpace OS Project
 
+/NeXTSPACE-OS/release/common/mkpackages.sh
 buildopt='Select an option to build an image: '
 options=("Build Stable" "Build Beta" "Quit")
 select opt in "${options[@]}"
@@ -16,7 +17,7 @@ do
         "Build Beta")
             echo "Building Beta release"
             echo ""
-            /NeXTSPACE-OS/release/common/mkpackages.sh
+            /bin/bash /NeXTSPACE-OS/mkpackages.sh
 	    livecd-creator --config /NeXTSPACE-OS/release/beta/nextspace.ks --title "nxtbeta" --fslabel "nextspaceos_rel_beta"
             break
             ;;
