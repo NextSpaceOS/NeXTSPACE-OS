@@ -16,7 +16,7 @@ do
         "Build Beta")
             echo "Building Beta release"
             echo ""
-            bash /NeXTSPACE-OS/release/common/mkpackages.sh
+            /NeXTSPACE-OS/release/common/mkpackages.sh
 	    livecd-creator --config /NeXTSPACE-OS/release/beta/nextspace.ks --title "nxtbeta" --fslabel "nextspaceos_rel_beta"
             break
             ;;
